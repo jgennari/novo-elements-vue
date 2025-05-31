@@ -1,8 +1,53 @@
-# NOVO Elements [![npm version](https://badge.fury.io/js/novo-elements.svg)](http://badge.fury.io/js/novo-elements) [![Build Status](https://travis-ci.org/bullhorn/novo-elements.svg?branch=master)](https://travis-ci.org/bullhorn/novo-elements) [![Coverage Status](https://coveralls.io/repos/github/bullhorn/novo-elements/badge.svg?branch=master)](https://coveralls.io/github/bullhorn/novo-elements?branch=master)
+# Novo Elements: Angular to Vue 3 Porting Guide (Windsurf Rule)
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bullhorn/Open-Source?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Dependency Status](https://david-dm.org/bullhorn/novo-elements.svg)](https://david-dm.org/bullhorn/novo-elements)
-[![devDependency Status](https://david-dm.org/bullhorn/novo-elements/dev-status.svg)](https://david-dm.org/bullhorn/novo-elements#info=devDependencies)
+## Purpose
+
+We are porting Novo Elements from Angular components to Vue 3 components. This is a foundational change intended to modernize the codebase, improve maintainability, and leverage Vue’s reactive and composition-based architecture.
+
+## Scope
+
+- All new UI components should be written in Vue 3.
+- Legacy Angular components will be phased out as their Vue equivalents are completed.
+- The goal is feature parity with the Angular components, but improvements and simplifications are encouraged where appropriate.
+
+## Best Practices & Guidelines
+
+### 1. Component Structure
+
+- Use the `<script setup>` syntax for new Vue components.
+- Prefer Composition API over Options API for new code.
+- Organize components in a flat structure under `src/components`, using PascalCase for filenames.
+
+### 2. State Management
+
+- Use Vue’s built-in reactivity for local state.
+- For shared state, prefer Pinia or Vue’s provide/inject over Vuex (if starting fresh).
+
+### 3. Styling
+
+- Use scoped CSS or CSS Modules.
+- Prefer Tailwind CSS or a utility-first approach if the project allows.
+- Avoid Angular-specific styling or encapsulation patterns.
+
+### 4. Testing
+
+- Write unit tests with Vitest or Jest.
+- Use Vue Test Utils for component testing.
+
+### 5. Migration Process
+
+- When porting a component, create a matching Vue 3 version in `src/components`.
+- Ensure feature parity; document any intentional changes.
+- Write migration notes in the component’s README if there are API or UX differences.
+
+### 6. Code Quality
+
+- Follow the project’s ESLint and Prettier rules.
+- Use TypeScript for all new code.
+- Document public props, emits, and slots in JSDoc or markdown.
+
+## References
+
 
 ## Dependencies
 
@@ -62,19 +107,6 @@ import {NOVO_ELEMENTS_LABELS_PROVIDERS} from 'novo-elements';
 bootstrap(MyApp [..NOVO_ELEMENTS_LABELS_PROVIDERS]);
 ```
 
-## Upgrading Novo Elements
-
-### To Version 6
-
-> Note: Ensure your tsconfig.app.json `include` property references all the ts files the migrations should be run against.  You can add a glob then remove it to ensure your build system works the same as before.
-
-```
-npm install --save timezone-support@2 novo-design-tokens@0 angular-imask@6 imask@6
-npm install --save novo-elements@6
-ng update novo-elements --migrate-only --from=0.0.0 --to=6.0.0 --force --allow-dirty  
-```
-
-
 ## Contribute
 
 There are many ways to **[contribute](https://github.com/bullhorn/novo-elements/blob/master/CONTRIBUTING.md)** to our OpenSource projects.
@@ -84,12 +116,6 @@ There are many ways to **[contribute](https://github.com/bullhorn/novo-elements/
 - **[Contribute bug fixes](https://github.com/bullhorn/novo-elements/blob/master/CONTRIBUTING.md)**.
 
 > TL;DR: Fork this repository, make any required change and then submit a PR :)
-
-### Contributors
-
-<object type="image/svg+xml" data="contributors.svg">
-  <img src="contributors.svg" />
-</object>
 
 # License
 
